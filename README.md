@@ -55,6 +55,10 @@ If `err` is an instanceof Error, it is used. Otherwise, a new Error is created w
 The callback is invoked with `err` as its first parameter.
 
 
+    asyncify.errorFirstify(fn)
+
+Takes a call-back last style function that does not pass the error as the first callback parameter and wraps it so that it provides a (null) error first, followed by all of the original arguments. Callbacks should be (somewhat) consistent: cb(err, val) - for great justice. This does that.
+
 ## License
 
 MIT. (c) 2012 jden - Jason Denizac <jason@denizac.org>
