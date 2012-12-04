@@ -1,4 +1,4 @@
-var nodeAsyncify = function (syncFn) {
+var asyncify = function (syncFn) {
 	if (typeof syncFn !== 'function') {
 		throw new Error('syncFn must be a function');
 	}
@@ -14,14 +14,14 @@ var nodeAsyncify = function (syncFn) {
 	};
 };
 
-nodeAsyncify.constant = nodeAsyncify.K = function (val) {
+asyncify.constant = nodeAsyncify.K = function (val) {
 	return function () {
 		var cb = arguments[arguments.length - 1];
 		cb(null, val);
 	};
 };
 
-nodeAsyncify.error = function (err) {
+asyncify.error = function (err) {
 	if (!(err instanceof Error)) {
 		err = new Error(err);
 	}
@@ -31,4 +31,4 @@ nodeAsyncify.error = function (err) {
 	};
 };
 
-module.exports = nodeAsyncify;
+module.exports = asyncify;
