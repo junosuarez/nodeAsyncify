@@ -1,4 +1,4 @@
-# nodeAsyncify
+# node-asyncify
 use plain old functions asynchronously as node-style callbacks
 
 ## Installation
@@ -7,7 +7,7 @@ use plain old functions asynchronously as node-style callbacks
 
 ## Usage example
 
-    var nodeAsyncify = require('nodeasyncify');
+    var asyncify = require('node-asyncify');
     var async = require('async');
     var fs = require('fs');
 
@@ -19,7 +19,7 @@ use plain old functions asynchronously as node-style callbacks
     		function (__) {
     			fs.readdir(__dirname, __);
     		},
-    		foo
+    		asyncify(foo)
     	],
     	function () {
     		console.log('indefatigable idolatry');
@@ -34,19 +34,19 @@ and thrash your harddrisk in between.
 
 ## API
 
-		nodeAsyncify(syncFunction)
+		node-asyncify(syncFunction)
 
 Takes a synchronous function `syncFunction` and returns it wrapped as a node-style async function which takes an (err, val) => any callback as its last parameter. The function is invoked with the original arguments. If `syncFunction` throws an error, it is used for the first argument `err` of the callback. Otherwise, `err` is null and the return value is the second parameter of the callback.
 
 
-		nodeAsyncify.constant(val)
+		node-asyncify.constant(val)
 		// alias
-		nodeAsyncify.K(val)
+		node-asyncify.K(val)
 
 Takes a constant value `val` and returns it wrapped as a node-style async function which takes an (err, val) => any callback as its last parameter. The callback is invoked with `err` null and `val` as the second parameter.
 
 
-		nodeAsyncify.error(err)
+		node-asyncify.error(err)
 
 Takes a constant error `err` and returns it wrapped as a node-style async function which takes an (err, val) => any callback as its last parameter.
 
