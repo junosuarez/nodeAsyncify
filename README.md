@@ -3,7 +3,7 @@ use plain old functions asynchronously as node-style callbacks
 
 ## Installation
 
-    $ npm install nodeasyncify
+    $ npm install node-asyncify
 
 ## Usage example
 
@@ -34,25 +34,26 @@ and thrash your harddrisk in between.
 
 ## API
 
-		node-asyncify(syncFunction)
+		asyncify(syncFunction)
 
 Takes a synchronous function `syncFunction` and returns it wrapped as a node-style async function which takes an (err, val) => any callback as its last parameter. The function is invoked with the original arguments. If `syncFunction` throws an error, it is used for the first argument `err` of the callback. Otherwise, `err` is null and the return value is the second parameter of the callback.
 
 
-		node-asyncify.constant(val)
+		asyncify.constant(val)
 		// alias
-		node-asyncify.K(val)
+		asyncify.K(val)
 
 Takes a constant value `val` and returns it wrapped as a node-style async function which takes an (err, val) => any callback as its last parameter. The callback is invoked with `err` null and `val` as the second parameter.
 
 
-		node-asyncify.error(err)
+		asyncify.error(err)
 
 Takes a constant error `err` and returns it wrapped as a node-style async function which takes an (err, val) => any callback as its last parameter.
 
-If `err` is an instanceof Error, it is used. Otherwise, a new Error is created with `err` as the parameter. For example, `nodeAsyncify.error('invalid foo')` is equivalent to `nodeAsyncify.error(new Error('invalid foo'))`.
+If `err` is an instanceof Error, it is used. Otherwise, a new Error is created with `err` as the parameter. For example, `asyncify.error('invalid foo')` is equivalent to `asyncify.error(new Error('invalid foo'))`.
 
 The callback is invoked with `err` as its first parameter.
+
 
 ## License
 
