@@ -1,0 +1,16 @@
+{
+  "name": "nodeasyncify",
+  "version": "0.1.0",
+  "description": "use plain old functions asynchronously as node-style callbacks",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:jden/nodeAsyncify.git"
+  },
+  "keywords": [
+    "async",
+    "asyncify",
+    "callback"
+  ],
+  "author": "jden <jason@denizac.org>",
+  "license": "MIT"
+}
