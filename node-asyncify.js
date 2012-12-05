@@ -46,4 +46,11 @@ asyncify.errorFirstify = function(valueFirstCbReturningFn) {
   };
 };
 
+asyncify.partial = function(fn /*, ...partialArgs[]*/) {
+  var partialArgs = toArray(arguments).slice(1);
+  return function (cb) {
+    fn.apply(this, partialArgs.concat(cb));
+  };
+};
+
 module.exports = asyncify;
