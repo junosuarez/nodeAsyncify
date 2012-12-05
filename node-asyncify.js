@@ -53,4 +53,11 @@ asyncify.partial = function(fn /*, ...partialArgs[]*/) {
   };
 };
 
+asyncify.call = function(fn, ctx /*, ...partialArgs[]*/) {
+  var partialArgs = toArray(arguments).slice(1);
+  return function (cb) {
+    fn.apply(ctx, partialArgs.concat(cb));
+  };
+};
+
 module.exports = asyncify;
