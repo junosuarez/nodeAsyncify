@@ -16,9 +16,7 @@ use plain old functions asynchronously as node-style callbacks
     }
 
     async.parallel([
-    		function (__) {
-    			fs.readdir(__dirname, __);
-    		},
+            asyncify.partial(fs.readdir, __dirname),
     		asyncify(foo)
     	],
     	function () {
@@ -58,6 +56,16 @@ The callback is invoked with `err` as its first parameter.
     asyncify.errorFirstify(fn)
 
 Takes a call-back last style function that does not pass the error as the first callback parameter and wraps it so that it provides a (null) error first, followed by all of the original arguments. Callbacks should be (somewhat) consistent: cb(err, val) - for great justice. This does that.
+
+
+    asyncify.partial(fn, arg1, arg2, ..., argn)
+
+Takes an async function, partially applies some arguments, and returns a function which takes only a callback.
+
+
+    asyncify.call(fn, thisArg, arg1, arg2, ..., argn)
+
+Takes an async function, partially applies some arguments, and returns a function which takes only a callback. The original `fn` is invoked in the context of `thisArg`, with semantics equivalent to `Function.call`.
 
 ## License
 
