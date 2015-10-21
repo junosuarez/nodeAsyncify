@@ -9,12 +9,13 @@ var asyncify = function (syncFn) {
   return function () {
     var args = toArray(arguments);
     var cb = args.pop();
+    var val;
     try {
-      var val = syncFn.apply(this, args);
-      cb(null, val);
+      val = syncFn.apply(this, args);
     } catch (err) {
-      cb(err);
+      return cb(err);
     }
+    cb(null, val);
   };
 };
 
