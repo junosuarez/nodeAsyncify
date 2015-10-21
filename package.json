@@ -1,6 +1,6 @@
 {
   "name": "node-asyncify",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "use plain old functions asynchronously as node-style callbacks",
   "repository": {
     "type": "git",
